@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-detalle-factura-heading">Create or edit a Detalle Factura</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detalleFactID">Detalle Fact ID</label>
+                    <input type="number" class="form-control" name="detalleFactID" id="field_detalleFactID"
+                           formControlName="detalleFactID"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_facturaNro">Factura Nro</label>
+                    <input type="number" class="form-control" name="facturaNro" id="field_facturaNro"
+                           formControlName="facturaNro"/>
+                    <div *ngIf="editForm.get('facturaNro').invalid && (editForm.get('facturaNro').dirty || editForm.get('facturaNro').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('facturaNro').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('facturaNro')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detalleFacDescripcion">Detalle Fac Descripcion</label>
+                    <input type="text" class="form-control" name="detalleFacDescripcion" id="field_detalleFacDescripcion"
+                           formControlName="detalleFacDescripcion"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detalleFacPrecioUnitario">Detalle Fac Precio Unitario</label>
+                    <input type="number" class="form-control" name="detalleFacPrecioUnitario" id="field_detalleFacPrecioUnitario"
+                           formControlName="detalleFacPrecioUnitario"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detalleFacCantidad">Detalle Fac Cantidad</label>
+                    <input type="number" class="form-control" name="detalleFacCantidad" id="field_detalleFacCantidad"
+                           formControlName="detalleFacCantidad"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_detalleFacTotal">Detalle Fac Total</label>
+                    <input type="number" class="form-control" name="detalleFacTotal" id="field_detalleFacTotal"
+                           formControlName="detalleFacTotal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_facturas">Facturas</label>
+                    <select class="form-control" id="field_facturas" name="facturas" formControlName="facturas">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="facturasOption.id === editForm.get('facturas').value?.id ? editForm.get('facturas').value : facturasOption" *ngFor="let facturasOption of facturas; trackBy: trackFacturasById">{{facturasOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

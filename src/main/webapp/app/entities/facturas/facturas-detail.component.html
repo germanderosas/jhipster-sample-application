@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="facturas">
+            <h2><span>Facturas</span> {{facturas.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Factura Nro</span></dt>
+                <dd>
+                    <span>{{facturas.facturaNro}}</span>
+                </dd>
+                <dt><span>Factura Fecha</span></dt>
+                <dd>
+                    <span>{{facturas.facturaFecha}}</span>
+                </dd>
+                <dt><span>Factura Cliente ID</span></dt>
+                <dd>
+                    <span>{{facturas.facturaClienteID}}</span>
+                </dd>
+                <dt><span>Clientes</span></dt>
+                <dd>
+                    <div *ngIf="facturas.clientes">
+                        <a [routerLink]="['/clientes', facturas.clientes?.id, 'view']">{{facturas.clientes?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/facturas', facturas.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Detalle Facturas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-detalle-factura" [routerLink]="['/detalle-factura/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Detalle Factura
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="detalleFacturas?.length === 0">
+        <span>No detalleFacturas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="detalleFacturas?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Detalle Fact ID</span></th>
+            <th><span>Factura Nro</span></th>
+            <th><span>Detalle Fac Descripcion</span></th>
+            <th><span>Detalle Fac Precio Unitario</span></th>
+            <th><span>Detalle Fac Cantidad</span></th>
+            <th><span>Detalle Fac Total</span></th>
+            <th><span>Facturas</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detalleFactura of detalleFacturas ;trackBy: trackId">
+                <td><a [routerLink]="['/detalle-factura', detalleFactura.id, 'view' ]">{{detalleFactura.id}}</a></td>
+                <td>{{detalleFactura.detalleFactID}}</td>
+                <td>{{detalleFactura.facturaNro}}</td>
+                <td>{{detalleFactura.detalleFacDescripcion}}</td>
+                <td>{{detalleFactura.detalleFacPrecioUnitario}}</td>
+                <td>{{detalleFactura.detalleFacCantidad}}</td>
+                <td>{{detalleFactura.detalleFacTotal}}</td>
+                <td>
+                    <div *ngIf="detalleFactura.facturas">
+                        <a [routerLink]="['../facturas', detalleFactura.facturas?.id, 'view' ]" >{{detalleFactura.facturas?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/detalle-factura', detalleFactura.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-factura', detalleFactura.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'detalle-factura', { outlets: { popup: detalleFactura.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

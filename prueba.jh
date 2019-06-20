@@ -1,0 +1,28 @@
+entity Clientes {
+	clienteNombre String required
+    clienteDomicilio String
+    clienteCuit Integer
+    clienteID Integer
+}
+
+entity Facturas{
+	facturaNro Integer required
+    facturaFecha Instant
+    facturaClienteID Integer
+}
+
+entity DetalleFactura {
+	detalleFactID Integer
+    facturaNro Integer required
+    detalleFacDescripcion String
+    detalleFacPrecioUnitario Integer
+    detalleFacCantidad Integer
+    detalleFacTotal Integer
+}
+relationship OneToMany {
+	Clientes{clienteID} to Facturas,
+}
+
+relationship OneToMany {
+	Facturas{facturaNro} to DetalleFactura,
+}
