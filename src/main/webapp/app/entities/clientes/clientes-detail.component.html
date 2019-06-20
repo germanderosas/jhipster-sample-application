@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="clientes">
+            <h2><span>Clientes</span> {{clientes.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cliente Nombre</span></dt>
+                <dd>
+                    <span>{{clientes.clienteNombre}}</span>
+                </dd>
+                <dt><span>Cliente Domicilio</span></dt>
+                <dd>
+                    <span>{{clientes.clienteDomicilio}}</span>
+                </dd>
+                <dt><span>Cliente Cuit</span></dt>
+                <dd>
+                    <span>{{clientes.clienteCuit}}</span>
+                </dd>
+                <dt><span>Cliente ID</span></dt>
+                <dd>
+                    <span>{{clientes.clienteID}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/clientes', clientes.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

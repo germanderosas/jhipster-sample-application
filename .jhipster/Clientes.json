@@ -1,0 +1,41 @@
+{
+    "name": "Clientes",
+    "fields": [
+        {
+            "fieldName": "clienteNombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "clienteDomicilio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clienteCuit",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "clienteID",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "facturas",
+            "otherEntityRelationshipName": "clientes",
+            "relationshipName": "clienteID"
+        }
+    ],
+    "changelogDate": "20190620204758",
+    "entityTableName": "clientes",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

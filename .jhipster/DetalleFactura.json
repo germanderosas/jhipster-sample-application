@@ -1,0 +1,49 @@
+{
+    "name": "DetalleFactura",
+    "fields": [
+        {
+            "fieldName": "detalleFactID",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "facturaNro",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detalleFacDescripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "detalleFacPrecioUnitario",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "detalleFacCantidad",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "detalleFacTotal",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "facturas",
+            "otherEntityName": "facturas",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190620204800",
+    "entityTableName": "detalle_factura",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

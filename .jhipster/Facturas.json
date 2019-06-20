@@ -1,0 +1,43 @@
+{
+    "name": "Facturas",
+    "fields": [
+        {
+            "fieldName": "facturaNro",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "facturaFecha",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "facturaClienteID",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "clientes",
+            "otherEntityName": "clientes",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "detalleFactura",
+            "otherEntityRelationshipName": "facturas",
+            "relationshipName": "facturaNro"
+        }
+    ],
+    "changelogDate": "20190620204759",
+    "entityTableName": "facturas",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
